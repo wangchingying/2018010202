@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button bt3,bt4;
     ToggleButton tb1;
     TextView tv1;
+    Switch sw1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bt4=(Button)findViewById(R.id.button4);
         tb1=(ToggleButton)findViewById(R.id.toggleButton);
         tv1=(TextView)findViewById(R.id.textView);
+        sw1=(Switch)findViewById(R.id.switch1);
 //第一種方法
         //new一個Mylistener
 /*        Mylistener listener=new Mylistener();
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //第二種方法
         //用匿名類別寫法,就不用宣告很多東西占用記憶體,因為按鈕只用一次<==複習一下匿名類別
+        //打到new View....按enter就會自動
 /*        bt3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,20 +44,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
  */
+
     tb1.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(MainActivity.this, "切換", Toast.LENGTH_SHORT).show();
-            tv1.setText(tb1.getText().toString());
+            if (tb1.isChecked()) {
+                Toast.makeText(MainActivity.this, "開關開啟中", Toast.LENGTH_SHORT).show();
+                tv1.setText(tb1.getText().toString());
+            } else {
+                Toast.makeText(MainActivity.this, "開關關閉中", Toast.LENGTH_SHORT).show();
+                tv1.setText(tb1.getText().toString());
+            }
         }
+
     });
-
-
-//第三種方法, 在onCreate直接執行View.OnClickListener介面,然後實作
+        //第三種方法, 在onCreate直接執行View.OnClickListener介面,然後實作
         bt3.setOnClickListener(this);
         bt4.setOnClickListener(this);
 
+        //Switch
+        sw1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sw1.isChecked())
+                {
+                    Toast.makeText(MainActivity.this, "switch on", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "switch off", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 }
+
+    //這個按紐檢查tb1(toggle button)目前是開啟還是關閉
+    public void clickcheck(View v) {
+        if (tb1.isChecked()) {
+            Toast.makeText(MainActivity.this, "目前開啟中", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MainActivity.this, "目前關閉中", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     public void click1(View v) //兩個按鈕onclick都叫click1, 但id不同, 可用switch來控制執行內容, 老師不喜歡
     {
         switch (v.getId())//V.getID()是int
