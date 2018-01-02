@@ -1,5 +1,6 @@
 package com.cyw.a2018010202;
 
+import android.content.Intent;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +13,7 @@ import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Button bt3,bt4;
+    Button bt3,bt4,bt6;
     ToggleButton tb1;
     TextView tv1;
     Switch sw1;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tb1=(ToggleButton)findViewById(R.id.toggleButton);
         tv1=(TextView)findViewById(R.id.textView);
         sw1=(Switch)findViewById(R.id.switch1);
+        bt6=(Button)findViewById(R.id.button6);
 //第一種方法
         //new一個Mylistener
 /*        Mylistener listener=new Mylistener();
@@ -44,7 +46,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
  */
-
+//跳到有懸浮按紐那頁  課本7-4
+bt6.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent it=new Intent(MainActivity.this,Main2Activity.class);
+        startActivity(it);
+    }
+});
     tb1.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
